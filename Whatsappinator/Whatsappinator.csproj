@@ -3,6 +3,7 @@
     <PropertyGroup>
         <Product>Whatsappinator</Product>
         <Authors>10_days_till_xmas</Authors>
+        <Version>1.0.0</Version>
         <Description>Whatsappinates an image (drag an image file onto this exe)</Description>
         <ApplicationIcon>Assets/icon.ico</ApplicationIcon>
         <OutputType>Exe</OutputType>
