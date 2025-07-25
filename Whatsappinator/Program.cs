@@ -21,12 +21,8 @@ public class Program
     
     private static int Main(string[] args)
     {
-        var assembly = Assembly.GetExecutingAssembly();
-        const string resourceName = "Whatsappinator.Assets.whatsapp.wav";
-        using var stream = assembly.GetManifestResourceStream(resourceName)!;
-        using var player = new SoundPlayer(stream);
-        player.Play();
-        
+        TryPlayWhatsappSound();
+
         var filePath = args.ElementAtOrDefault(0);
         if (string.IsNullOrWhiteSpace(filePath))
         {
@@ -57,6 +53,23 @@ public class Program
                 throw; // Rethrow the exception for debugging purposes
             }
             return 1;
+        }
+    }
+
+    private static void TryPlayWhatsappSound()
+    {
+        try
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+            const string resourceName = "Whatsappinator.Assets.whatsapp.wav";
+            using var stream = assembly.GetManifestResourceStream(resourceName)!;
+            using var player = new SoundPlayer(stream);
+            player.Play();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            Console.WriteLine("Failed to play the WhatsApp sound. Continuing without sound. :,(");
         }
     }
 
